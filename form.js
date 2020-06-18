@@ -1,6 +1,7 @@
 const isValid = () =>{
 
     let form = document.signup;
+    let errorMessage = document.querySelector('.error-message');
     let details = {
       first_name: form.first_name.value,
       last_name: form.last_name.value,
@@ -21,7 +22,7 @@ const  validate = (event)=> {
     event.preventDefault();
     const check = isValid();
     if (check){
-        return true
+        return true;
     }
 }
 document.querySelector('form').addEventListener('submit',validate)
