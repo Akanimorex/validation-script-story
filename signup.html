@@ -32,7 +32,7 @@
     <!-- Custom style  -->
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/special-order.css" />
-    <link rel="stylesheet" href="css/form.css" />
+    <link rel="stylesheet" href="form.css" />
     <title>Gerrit</title>
   </head>
   <body>
@@ -43,13 +43,13 @@
           <div class="col">
             <form
               method="POST"
-              action="https://us-central1-gerrit-16e7e.cloudfunctions.net/app/user/sign-up"
+              action="#"
               name="signup"
               class="mx-auto"
             >
-              <h1 class="font-weight-bold">Create a Gerrit account</h1>
-              <p class="text-center">Get your items delivered in minutes</p>
+              <h1 class="font-weight-bold">Register</h1>
               <div class="form-group">
+                <div class="error-message"></div>
                 <label class="font-weight-bold" for="first_name">First name</label>
                 <input
                   class="form-control custom-control-f"
@@ -159,60 +159,6 @@
     <!-- Bootstrap Select Plugin -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
-
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/7.14.2/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/7.14.2/firebase-auth.js"></script>
-    <script defer src="/__/firebase/7.14.2/firebase-storage.js"></script>
-    <script defer src="/__/firebase/7.14.2/firebase-firestore.js"></script>
-    <!-- initialize the SDK after all desired features are loaded -->
-    <script defer src="/__/firebase/init.js"></script>
-
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        document.signup.onsubmit = function(event) {
-          event.preventDefault();
-          let form = document.signup;
-          let details = {
-            first_name: form.first_name.value,
-            last_name: form.last_name.value,
-            phone: form.phone.value,
-            email: form.email.value,
-            gender: form.gender.value,
-            password: form.password.value
-          }
-          
-          fetch('https://us-central1-gerrit-16e7e.cloudfunctions.net/app/user/create',
-            {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json;charset=utf-8'
-              },
-              body: JSON.stringify(details)
-            }
-          )
-            .then(dbResult=>{
-              console.log(dbResult)
-              console.log(dbResult.json())
-              let data_ = dbResult.json();
-              if(data_.status == false){
-                location.reload();
-              }else{
-                location.href = '/dashboard.html'
-              }
-            })
-            .catch(function(error) {
-              // Handle Errors here.
-              var errorCode = error.code;
-              var errorMessage = error.message;
-              console.log(error);
-              console.log(error.message);
-            });
-        };
-      });
-    </script>
+    <script src="form.js"></script>
   </body>
 </html>
